@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kesariya Balam — A Traveler's Guide to Rajasthan</title>
+<meta name="description" content="Plan your Rajasthan journey — Jaipur, Udaipur, Jodhpur, Jaisalmer. Real itineraries, honest guides, and trusted bookings for the desert state of India.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --kesariya: #D9730D;
+    --kesariya-deep: #B85C05;
+    --sand: #E9D9B8;
+    --sand-light: #F3E9D2;
+    --jodhpur: #1F3A5F;
+    --jodhpur-deep: #16283F;
+    --ink: #241B14;
+    --marble: #FAF6EE;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--marble);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--kesariya-deep);
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.4rem 5vw;
+    background:rgba(250,246,238,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(36,27,20,0.08);
+    transition:padding 0.3s ease;
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.4rem;
+    font-weight:600;
+    display:flex; flex-direction:column; line-height:1.1;
+  }
+  .logo .hindi{font-size:1rem; color:var(--kesariya-deep); font-weight:500;}
+  .nav-links{display:flex; gap:2.2rem; font-size:0.88rem; letter-spacing:0.01em;}
+  .nav-links a{position:relative; padding-bottom:4px;}
+  .nav-links a::after{
+    content:''; position:absolute; bottom:0; left:0; width:0; height:1px;
+    background:var(--kesariya); transition:width 0.25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--jodhpur); color:var(--marble);
+    padding:0.6rem 1.3rem; border-radius:2px; font-size:0.82rem;
+    letter-spacing:0.03em;
+  }
+  .menu-toggle{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative; min-height:100vh;
+    display:flex; align-items:center;
+    background:linear-gradient(180deg, var(--jodhpur-deep) 0%, var(--jodhpur) 55%, var(--kesariya-deep) 100%);
+    overflow:hidden;
+  }
+  .dunes{position:absolute; bottom:0; left:0; width:100%; opacity:0.9;}
+  .stars{position:absolute; top:0; left:0; width:100%; height:60%; opacity:0.6;}
+  .hero-content{
+    position:relative; z-index:2;
+    padding:8rem 5vw 4rem;
+    max-width:780px;
+  }
+  .hero .eyebrow{color:var(--sand);}
+  .hero h1{
+    color:var(--marble);
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    font-weight:600;
+    line-height:1.05;
+    margin:1rem 0 1.4rem;
+  }
+  .hero h1 em{color:var(--kesariya); font-style:italic;}
+  .hero p{
+    color:rgba(250,246,238,0.82);
+    font-size:1.15rem;
+    max-width:520px;
+    margin-bottom:2.2rem;
+    font-weight:300;
+  }
+  .hero-actions{display:flex; gap:1rem; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--kesariya); color:var(--marble);
+    padding:0.9rem 1.8rem; font-size:0.95rem; letter-spacing:0.02em;
+    border-radius:2px; transition:background 0.25s ease;
+    border:1px solid var(--kesariya);
+  }
+  .btn-primary:hover{background:var(--kesariya-deep);}
+  .btn-ghost{
+    padding:0.9rem 1.8rem; font-size:0.95rem;
+    border:1px solid rgba(250,246,238,0.4); color:var(--marble);
+    border-radius:2px; transition:border-color 0.25s ease;
+  }
+  .btn-ghost:hover{border-color:var(--marble);}
+
+  /* ===== JALI DIVIDER (signature element) ===== */
+  .jali-divider{
+    width:100%; height:64px;
+    background-repeat:repeat-x; background-size:64px 64px;
+    opacity:0.35;
+  }
+  .jali-divider.on-sand{background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><g fill="none" stroke="%231F3A5F" stroke-width="1.4"><rect x="8" y="8" width="48" height="48" rx="4"/><path d="M32 8 L56 32 L32 56 L8 32 Z"/><circle cx="32" cy="32" r="10"/></g></svg>');}
+  .jali-divider.on-jodhpur{background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><g fill="none" stroke="%23D9730D" stroke-width="1.4"><rect x="8" y="8" width="48" height="48" rx="4"/><path d="M32 8 L56 32 L32 56 L8 32 Z"/><circle cx="32" cy="32" r="10"/></g></svg>');}
+
+  /* ===== SECTION SHELL ===== */
+  section{padding:5.5rem 5vw;}
+  .section-head{max-width:640px; margin-bottom:3rem;}
+  .section-head h2{font-size:clamp(2rem, 4vw, 2.8rem); margin-top:0.6rem;}
+  .section-head p{color:rgba(36,27,20,0.7); font-size:1.05rem; margin-top:1rem; font-weight:300;}
+
+  /* ===== CITY GRID ===== */
+  .cities{background:var(--sand-light);}
+  .city-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:1.5px; background:rgba(36,27,20,0.12);
+    border:1px solid rgba(36,27,20,0.12);
+  }
+  .city-card{
+    background:var(--sand-light);
+    padding:2.4rem 1.8rem;
+    transition:background 0.3s ease;
+    position:relative;
+    min-height:220px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+  }
+  .city-card:hover{background:var(--marble);}
+  .city-card .num{
+    font-family:'JetBrains Mono', monospace; font-size:0.75rem;
+    color:var(--kesariya-deep); margin-bottom:1.4rem;
+  }
+  .city-card h3{font-size:1.7rem; margin-bottom:0.5rem;}
+  .city-card .tag{font-size:0.85rem; color:rgba(36,27,20,0.62); font-weight:300;}
+  .city-card .known{
+    font-size:0.78rem; margin-top:0.9rem; color:var(--kesariya-deep);
+    font-family:'JetBrains Mono', monospace;
+  }
+
+  /* ===== ITINERARY STRIP ===== */
+  .itinerary{background:var(--jodhpur-deep); color:var(--marble);}
+  .itinerary .eyebrow{color:var(--kesariya);}
+  .itinerary .section-head p{color:rgba(250,246,238,0.72);}
+  .route{
+    display:flex; align-items:center; flex-wrap:wrap; gap:0; margin-top:2.5rem;
+    font-family:'JetBrains Mono', monospace; font-size:0.85rem;
+  }
+  .route .stop{
+    display:flex; flex-direction:column; gap:0.3rem;
+    padding:0.6rem 1.2rem; border-left:1px solid rgba(250,246,238,0.25);
+  }
+  .route .stop:first-child{border-left:none; padding-left:0;}
+  .route .stop .city{font-family:'Cormorant Garamond', serif; font-size:1.3rem; font-weight:600;}
+  .route .stop .days{color:var(--kesariya); font-size:0.75rem;}
+  .itinerary-cta{margin-top:2.5rem;}
+
+  /* ===== PRACTICAL INFO ===== */
+  .practical{background:var(--marble);}
+  .info-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:2.5rem; margin-top:2.5rem;
+  }
+  .info-item .eyebrow{margin-bottom:0.6rem; display:block;}
+  .info-item h3{font-size:1.3rem; margin-bottom:0.5rem; font-weight:600;}
+  .info-item p{font-size:0.92rem; color:rgba(36,27,20,0.68); font-weight:300;}
+
+  /* ===== CTA BAND ===== */
+  .cta-band{
+    background:var(--kesariya); color:var(--marble);
+    text-align:center; padding:5rem 5vw;
+  }
+  .cta-band h2{font-size:clamp(1.8rem, 4vw, 2.6rem); margin-bottom:1rem;}
+  .cta-band p{max-width:460px; margin:0 auto 2rem; font-weight:300; opacity:0.92;}
+  .cta-band .btn-primary{background:var(--jodhpur-deep); border-color:var(--jodhpur-deep);}
+  .cta-band .btn-primary:hover{background:var(--ink);}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--jodhpur-deep); color:rgba(250,246,238,0.6);
+    padding:3rem 5vw 2rem; font-size:0.85rem;
+  }
+  footer .foot-top{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:2rem;
+    padding-bottom:2rem; border-bottom:1px solid rgba(250,246,238,0.15);
+    margin-bottom:1.5rem;
+  }
+  footer .foot-logo{font-family:'Cormorant Garamond', serif; font-size:1.3rem; color:var(--marble);}
+  footer .foot-links{display:flex; gap:2rem; flex-wrap:wrap;}
+  footer .disclosure{max-width:600px; font-size:0.78rem; opacity:0.7; line-height:1.7;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  @media (max-width:760px){
+    .nav-links{display:none;}
+    .route{flex-direction:column; align-items:flex-start;}
+    .route .stop{border-left:none; border-top:1px solid rgba(250,246,238,0.25); padding-left:0; padding-top:1rem; width:100%;}
+    .route .stop:first-child{border-top:none; padding-top:0;}
+    footer .foot-top{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Kesariya Balam <span class="hindi">केसरिया बालम</span></div>
+  <div class="nav-links">
+    <a href="#cities">Cities</a>
+    <a href="#itinerary">Itineraries</a>
+    <a href="#practical">Plan</a>
+  </div>
+  <a href="#practical" class="nav-cta">Start Planning</a>
+</nav>
+
+<section class="hero">
+  <svg class="stars" viewBox="0 0 1000 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="80" cy="60" r="1.4" fill="#FAF6EE" opacity="0.7"/>
+    <circle cx="220" cy="110" r="1" fill="#FAF6EE" opacity="0.5"/>
+    <circle cx="360" cy="45" r="1.6" fill="#FAF6EE" opacity="0.8"/>
+    <circle cx="510" cy="90" r="1" fill="#FAF6EE" opacity="0.5"/>
+    <circle cx="640" cy="55" r="1.3" fill="#FAF6EE" opacity="0.6"/>
+    <circle cx="780" cy="100" r="1" fill="#FAF6EE" opacity="0.5"/>
+    <circle cx="900" cy="40" r="1.5" fill="#FAF6EE" opacity="0.7"/>
+    <circle cx="150" cy="180" r="1" fill="#FAF6EE" opacity="0.4"/>
+    <circle cx="470" cy="160" r="1.2" fill="#FAF6EE" opacity="0.5"/>
+    <circle cx="850" cy="170" r="1" fill="#FAF6EE" opacity="0.4"/>
+  </svg>
+  <svg class="dunes" viewBox="0 0 1000 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,180 Q150,120 300,170 T600,150 T1000,190 L1000,300 L0,300 Z" fill="#B85C05" opacity="0.55"/>
+    <path d="M0,220 Q200,160 400,210 T800,190 T1000,220 L1000,300 L0,300 Z" fill="#D9730D" opacity="0.7"/>
+    <path d="M0,255 Q250,210 500,250 T1000,240 L1000,300 L0,300 Z" fill="#241B14" opacity="0.85"/>
+  </svg>
+  <div class="hero-content">
+    <div class="eyebrow">Rajasthan, India — Traveler's Guide</div>
+    <h1>The desert doesn't<br>perform for tourists.<br><em>It just is.</em></h1>
+    <p>Honest city guides, real itineraries, and trusted bookings for Jaipur, Udaipur, Jodhpur and Jaisalmer — written for travelers landing in Rajasthan for the first time.</p>
+    <div class="hero-actions">
+      <a href="#cities" class="btn-primary">Explore the Cities</a>
+      <a href="#itinerary" class="btn-ghost">See a 7-Day Route</a>
+    </div>
+  </div>
+</section>
+
+<div class="jali-divider on-sand"></div>
+
+<section class="cities reveal" id="cities">
+  <div class="section-head">
+    <div class="eyebrow">Where to Go</div>
+    <h2>Four cities, four moods</h2>
+    <p>Each built by a different dynasty, in a different stone, for a different reason. Pick by what you want to feel, not just what's on the map.</p>
+  </div>
+  <div class="city-grid">
+    <div class="city-card">
+      <div class="num">01</div>
+      <h3>Jaipur</h3>
+      <div class="tag">The Pink City — forts, bazaars, first stop for most</div>
+      <div class="known">Amber Fort · City Palace · Hawa Mahal</div>
+    </div>
+    <div class="city-card">
+      <div class="num">02</div>
+      <h3>Udaipur</h3>
+      <div class="tag">City of Lakes — palaces on the water</div>
+      <div class="known">Lake Pichola · City Palace · Jag Mandir</div>
+    </div>
+    <div class="city-card">
+      <div class="num">03</div>
+      <h3>Jodhpur</h3>
+      <div class="tag">The Blue City — a fort above a maze of indigo lanes</div>
+      <div class="known">Mehrangarh Fort · Old City · Umaid Bhawan</div>
+    </div>
+    <div class="city-card">
+      <div class="num">04</div>
+      <h3>Jaisalmer</h3>
+      <div class="tag">Golden City — a living fort at the edge of the Thar</div>
+      <div class="known">Jaisalmer Fort · Sam Dunes · Camel Safari</div>
+    </div>
+  </div>
+</section>
+
+<div class="jali-divider on-jodhpur"></div>
+
+<section class="itinerary reveal" id="itinerary">
+  <div class="section-head">
+    <div class="eyebrow">Suggested Route</div>
+    <h2>7 days, the way most first-timers should do it</h2>
+    <p>Golden Triangle travelers usually enter through Delhi and Agra — this is the Rajasthan leg that follows, west to the desert.</p>
+  </div>
+  <div class="route">
+    <div class="stop"><span class="city">Jaipur</span><span class="days">Day 1–2</span></div>
+    <div class="stop"><span class="city">Jodhpur</span><span class="days">Day 3–4</span></div>
+    <div class="stop"><span class="city">Jaisalmer</span><span class="days">Day 5–6</span></div>
+    <div class="stop"><span class="city">Udaipur</span><span class="days">Day 7 (fly out)</span></div>
+  </div>
+  <div class="itinerary-cta">
+    <a href="#practical" class="btn-primary">Get the Full Itinerary</a>
+  </div>
+</section>
+
+<section class="practical reveal" id="practical">
+  <div class="section-head">
+    <div class="eyebrow">Before You Go</div>
+    <h2>What foreign travelers actually ask</h2>
+    <p>The practical questions that decide whether the trip goes smoothly.</p>
+  </div>
+  <div class="info-grid">
+    <div class="info-item">
+      <span class="eyebrow">Timing</span>
+      <h3>Best time to visit</h3>
+      <p>October to March — daytime is warm, nights in the desert are cold. April to June is punishing heat.</p>
+    </div>
+    <div class="info-item">
+      <span class="eyebrow">Entry</span>
+      <h3>Visa on arrival / e-Visa</h3>
+      <p>Most nationalities can apply for an Indian e-Visa online before travel — apply at least a week ahead.</p>
+    </div>
+    <div class="info-item">
+      <span class="eyebrow">Budget</span>
+      <h3>Daily cost, realistically</h3>
+      <p>Budget travelers manage on $25–35/day. Mid-range comfort with a driver runs closer to $70–100/day.</p>
+    </div>
+    <div class="info-item">
+      <span class="eyebrow">Safety</span>
+      <h3>Solo & solo female travel</h3>
+      <p>Rajasthan is well-traveled and generally safe in tourist areas — standard precautions apply, same as any country.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Ready to book the desert?</h2>
+  <p>Hotels, desert camps, and guided tours — compared and linked, so you're not guessing.</p>
+  <a href="#" class="btn-primary">Browse Stays & Tours</a>
+</div>
+
+<footer>
+  <div class="foot-top">
+    <div class="foot-logo">Kesariya Balam</div>
+    <div class="foot-links">
+      <a href="#cities">Cities</a>
+      <a href="#itinerary">Itineraries</a>
+      <a href="#practical">Plan Your Trip</a>
+    </div>
+  </div>
+  <p class="disclosure">Kesariya Balam is an independent travel guide to Rajasthan. Some links on this site are affiliate links — if you book through them, we may earn a small commission at no extra cost to you. This helps keep the guide free and independently written.</p>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
